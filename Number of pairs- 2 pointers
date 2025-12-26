@@ -1,0 +1,40 @@
+import java.util.*;
+public class HelloWorld {
+    public static void main(String[]args){
+        Scanner sc = new Scanner(System.in);
+        
+        int t = sc.nextInt();
+
+        while(t-- > 0){
+            int n = sc.nextInt();
+            int l = sc.nextInt();
+            int r = sc.nextInt();
+
+            int[] a = new int[n];
+            for(int i = 0; i < n; i++){
+                a[i] = sc.nextInt();
+            }
+            Arrays.sort(a);
+            long answer = countPairs(a,r) - countPairs(a,l - 1);
+            System.out.println(answer);
+        }
+        sc.close();
+     
+    } 
+    public static long countPairs(int[] a, int limit){
+        int left = 0, right = a.length - 1;
+        long count = 0;
+          while (left < right) {
+            if (a[left] + a[right] <= limit) {
+                count += (right - left);
+                left++;
+            } else {
+                right--;
+            }
+        }
+        return count;
+
+    }
+       
+}
+
