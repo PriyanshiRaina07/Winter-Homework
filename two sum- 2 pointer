@@ -1,0 +1,48 @@
+import java.util.*;
+public class HelloWorld {
+
+    static class pair {    //because sorting destroy original to store it
+        int val;
+        int idx;
+
+        pair(int val, int idx){
+            this.val = val;
+            this.idx = idx;
+        }
+    }
+    public static void main(String[]args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int x = sc.nextInt();
+    
+        pair[] arr = new pair[n];
+
+        for(int i = 0; i < n; i++){
+            arr[i] = new pair(sc.nextInt(), i + 1);         //store value ana 1 based index
+        }
+        Arrays.sort(arr, (a,b) -> a.val - b.val);
+
+        int left = 0;
+        int right = n - 1;
+
+        while(left < right){
+            int sum = arr[left].val + arr[right].val;
+
+            if(sum == x){
+                System.out.println(arr[left].idx + " " + arr[right].idx);
+                return;
+            }
+            else if(sum < x){
+                left ++;
+            }
+            else{
+                right--;
+            }
+        }
+        System.out.println("-1");
+        sc.close();
+     
+    } 
+       
+}
+
