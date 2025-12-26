@@ -1,0 +1,36 @@
+import java.util.*;
+public class HelloWorld {
+    public static void main(String[]args){
+        Scanner sc = new Scanner(System.in);
+        
+        int n = sc.nextInt();
+        int x = sc.nextInt();
+                                                               //TLE CAME
+        int[] w = new int[n];
+        for(int i = 0; i < n; i ++){
+            w[i] = sc.nextInt();
+        }
+        Arrays.sort(w);
+
+        int left = 0;
+        int right = n - 1;
+
+        int gondola = 0;
+
+        while(left <= right){
+            if(w[left] + w[right] <= x){
+                left++;
+                right--;
+            }else{
+                right--;
+            }
+            gondola++;
+        }
+        System.out.println(gondola);
+        sc.close();
+          
+      
+    }
+       
+}
+
