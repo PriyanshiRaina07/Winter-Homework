@@ -1,0 +1,34 @@
+import java.util.*;
+public class HelloWorld {
+    public static void main(String[]args){
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();       //no of test case need to pass
+
+        while(t-- > 0){       //due to many tst case 
+
+            int n = sc.nextInt();
+            int[] a = new int[n];     //array created of size n
+
+            for(int i = 0; i < n; i++){
+                a[i] = sc.nextInt();         // n integers as input and stores them in array a.
+            }
+            Arrays.sort(a);
+            int left = 0;
+            boolean possible = true;
+
+            for(int right = 1; right < n; right++){
+                if(a[right] - a[left] <= 1){
+                    left = right;
+                }else{
+                    possible = false;
+                    break;
+                }
+            }
+            System.out.println(possible ? "YES" : "NO");
+        } 
+        
+        sc.close();
+    } 
+       
+}
+
