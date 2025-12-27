@@ -1,0 +1,42 @@
+import java.util.*;
+public class HelloWorld {  
+    static List<String> ans = new ArrayList<>();
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+          String s = sc.next();
+
+        char[] arr = s.toCharArray();              //string to character
+        Arrays.sort(arr);
+
+        boolean[] used = new boolean[arr.length];         //track which character already used
+
+        generate(arr, used, "");      //recursion start with empty string
+
+        System.out.println(ans.size());
+        for (String str : ans) {
+            System.out.println(str);
+        }
+    }
+    static void generate(char[] arr, boolean[] used, String current) {
+
+        if (current.length() == arr.length) {   //base case
+            ans.add(current);
+            return;
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+
+            if (used[i]) continue;
+
+            if (i > 0 && arr[i] == arr[i - 1] && !used[i - 1])
+                continue;
+
+            used[i] = true;
+            generate(arr, used, current + arr[i]);
+            used[i] = false;   //backtrack
+        }
+    }
+}
+
+
+
