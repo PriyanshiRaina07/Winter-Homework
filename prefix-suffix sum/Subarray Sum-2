@@ -1,0 +1,27 @@
+import java.util.*;
+public class HelloWorld {                //TLE
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        long x = sc.nextLong();
+
+        HashMap<Long, Long> map = new HashMap<>();
+        map.put(0L,1L);
+
+        long sum = 0;
+        long count = 0;
+
+        for (int i = 0; i < n; i++) {
+            sum += sc.nextLong();          //prefix sum add{0,2,1,4,9,7}
+
+            count += map.getOrDefault(sum - x, 0L);
+            map.put(sum, map.getOrDefault(sum, 0L) + 1);
+        }
+        System.out.println(count);
+
+    }
+}
+       
+
+
