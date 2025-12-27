@@ -1,0 +1,34 @@
+import java.util.*;
+public class HelloWorld {             
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int x = sc.nextInt();
+
+        long[] arr = new long[n];
+
+        for(int i = 0; i < n; i++){
+           arr[i] = sc.nextLong();
+        }
+        int left = 0;
+        int sum = 0;
+        int count = 0;
+
+        for(int right = 0; right < n; right ++){
+            sum += arr[right];
+
+            while(sum > x){        //window invalid
+                sum -= arr[left];  //remove element from strt
+                left++;
+            }
+            if(sum == x){
+                count++;
+            }
+        }
+        System.out.println(count);
+    }
+}
+       
+
+
