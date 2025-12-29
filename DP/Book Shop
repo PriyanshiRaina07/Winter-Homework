@@ -1,0 +1,31 @@
+import java.util.*;
+public class HelloWorld { 
+       public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+          int n = sc.nextInt();
+          int x = sc.nextInt();
+          int[] price = new int[n];
+          int[] page = new int[n];
+          for(int i = 0; i < n; i++){
+            price[i] = sc.nextInt();
+          }
+          for(int i = 0; i < n; i++){
+            page[i] = sc.nextInt();
+          }
+
+        
+        int[] dp = new int[x + 1];
+        for(int i = 0; i < n; i++){
+          for(int j = x; j >= price[i]; j--){
+            dp[j] = Math.max(dp[j],page[i] + dp[j - price[i]]);
+          }
+        }
+       
+        
+        System.out.println(dp[x]);
+       }
+}
+
+
+
